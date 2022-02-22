@@ -9,6 +9,56 @@ const IMAGES = {
         '/assets/images/환승연애.webp',
     ],
 
+    MAIN_BANNER: [
+        {
+            src: '/assets/images/기상청 사람들 포스터.webp',
+            subTitle: ''
+        },
+        {
+            src: '/assets/images/아무도 없는 곳.webp',
+            subTitle: ''
+        },
+        {
+            src: '/assets/images/월요일이 사라졌다.webp',
+            subTitle: '흩어지면 죽는다! 일곱 쌍둥이의 목숨을 건 생존 팀플레이'
+        }
+    ],
+
+    CONTENT_POSTER: [
+        {
+            src: '/assets/images/아직 최선을 다하지 않았을 뿐.webp',
+            title: '아직 최선을 다하지 않았을 뿐'
+        },
+        {
+            src: '/assets/images/스물다섯 스물하나.webp',
+            title: '스물다섯 스물하나'
+        },
+        {
+            src: '/assets/images/기상청 사람들.webp',
+            title: '기상청 사람들'
+        },
+        {
+            src: '/assets/images/서른 아홉.webp',
+            title: '서른 아홉'
+        },
+        {
+            src: '/assets/images/어쩌다 사장2.webp',
+            title: '어쩌다 사장2'
+        },
+        {
+            src: '/assets/images/ALIVE.webp',
+            title: 'ALIVE(얼라이브)'
+        },
+        {
+            src: '/assets/images/서울체크인.webp',
+            title: '서울체크인'
+        },
+        {
+            src: '/assets/images/드래곤볼Z 1기.webp',
+            title: '드래곤볼Z 1기'
+        }
+    ],
+
     INFINITY_SLIDE_1 : [
         '/assets/images/유퀴즈온더블럭.webp',
         '/assets/images/고스트닥터.webp',

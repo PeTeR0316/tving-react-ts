@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import MainPage from './pages/main';
 
 const AppStyled = styled.div`
+    width: 100%;
     box-sizing: border-box;
     background-color: #000000;
 

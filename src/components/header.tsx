@@ -10,16 +10,19 @@ import Nav from './nav';
 // `
 
 const HeaderStyle = styled.header`
-    width: 100%;
+    width: 100%
     height: 90px;
     line-height: 90px;
-    background-color: #000000;
-    opacity: 0.9;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
     position: fixed;
     top: 0px;
     padding: 0px 60px;
     z-index: 99;
     
+    .backgroundColorBlack {
+        background-color: #000000;
+        opacity: 0.9;
+    }
 
     .title {
         color: #ffffff;
@@ -35,6 +38,7 @@ const HeaderStyle = styled.header`
         display: inline-block;
         height: 90px;
         vertical-align: top;
+        float: right;
         
 
         .search {
@@ -55,11 +59,12 @@ const Header = () => {
     const [scroll, setScroll] = useState<number>(0);
 
     useEffect(() => {
-        setScroll(window.scrollY)
-    }, [window.scrollY])
+        setScroll(window.scrollY);
+        console.log(window.scrollY);
+    }, [scroll])
 
     return (
-        <HeaderStyle>
+        <HeaderStyle className={scroll > 0 ? 'backgroundColorBlack' : ''}>
             <Link to="/">
                 <h1 className='title'>TVING</h1>
             </Link>

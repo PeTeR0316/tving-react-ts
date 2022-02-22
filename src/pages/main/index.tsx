@@ -9,7 +9,6 @@ import MainBanner from '../../components/main/pc/main-banner';
 import PosterSlickPc from '../../components/main/pc/poster-slick-pc';
 
 const MainPageStyle = styled.div`
-    width: 100%;
 `
 
 const MainPage = () => {

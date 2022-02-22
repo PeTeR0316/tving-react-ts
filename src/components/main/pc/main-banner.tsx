@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Slider, { Settings } from 'react-slick';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css'; 
+import '../../../assets/slick/slick.css';
+import '../../../assets/slick/slick-theme.css'; 
 
 import IMAGES from "../../../assets/images";
+import ICONS from "../../../assets/icons";
 
 interface itemsProps {
     item: string,
@@ -15,70 +16,25 @@ interface itemsProps {
 
 const MainBannerStyle = styled.div`
     width: 100%;
+    position: relative;
 
-    .playContainer {
-        width: 100%;
+    .bannerContainer {
         position: relative;
-        
-        .poster{
+
+        .bannerImg {
             width: 100%;
         }
 
-        .gradationImg {
-            width: 100%;
+        .bannerSubtitle {
+            color: #dddddd;
+            font-size: 24px;
             position: absolute;
-            z-index: 3;
-            top: 0px;
-            left: 0px;
+            left: 70px;
+            bottom: 200px;
         }
-
-        .textContainer {
-            
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 4;
-
-            .playText {
-                color: #ffffff;
-                font-weight: bold;
-            }
-
-            .joinText {
-                color: #9e9e9e;
-            }
-
-            .detailBtn {
-                width: 200px;
-                height: 70px;
-                border: 1px solid #ffffff;
-                border-radius: 5px;
-                background-color: rgba(255,255,255,0.3);
-                color: #ffffff;
-                font-size: 1.2rem;
-                font-weight: bold;
-                z-index: 2;
-            }
-        }
-
     }
 
-    .bannerImg {
-        width: 100%;
-    }
-
-    .slick-dots {
-        display: inline-block; 
-
-        li {
-            button {
-                ::before{
-                    color: #ffffff;
-                }
-            }
-        }
+    .playBtn {
     }
 
     .detailBtn {
@@ -91,15 +47,37 @@ const MainBannerStyle = styled.div`
         font-size: 1.2rem;
         font-weight: bold;
         z-index: 2;
+        position: absolute;
+        right: 30px;
+        bottom: 30px;
+    }
+`
+
+const SliderStyle = styled(Slider)`
+    .slick-dots {
+        display: inline-block; 
+
+        li {
+            display: inline-block; 
+
+            button {
+                ::before{
+                    color: #ffffff;
+                    
+                }
+            }
+        }
     }
 `
 
 const MainBanner = () => {
+    const [autoSlideValue, setAutoSlideValue] = useState<boolean>(true)
+
     const settings = {
         dots: true,
         fade: true,
         infinite: true,
-        autoplay: true,
+        autoplay: autoSlideValue,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -108,42 +86,36 @@ const MainBanner = () => {
 
     return (
         <MainBannerStyle>
-            <Slider {...settings}>
-                {/* {children} */}
-                {IMAGES.INFINITY_SLIDE_1.map((poster, index) => {
+            <SliderStyle {...settings}>
+                {IMAGES.MAIN_BANNER.map((banner, index) => {
                     return (
-                        <div key={index}>
-                            <img src={poster} alt={`banner${index}`} className="bannerImg" />
+                        <div className="bannerContainer" key={index}>
+                            <img src={banner.src} alt={`banner${index}`} className="bannerImg" />
+                            <span className="bannerSubtitle">
+                                {banner.subTitle}
+                            </span>
                         </div>
                     )
                 })}
+            </SliderStyle>
 
-                    <Link to="/join">
-                        <button className="detailBtn" type='button'>
-                            자세히보기
-                        </button>
-                    </Link>
-            </Slider>
+            {/* <button type="button" 
+                onClick={() => {
+                    alert("click");
+                    setAutoSlideValue(!autoSlideValue);
+                }}
+            >
+                <img className="playBtn" 
+                    src={ICONS.ICON_PLAY_AROW} 
+                    alt="play" 
+                />
+            </button> */}
 
-            {/* <div className='playContainer'>
-                <img className="poster" src={IMAGES.POST_PC} alt="poster-img" />
-                <img className="gradationImg" src={IMAGES.GRADATION_IMG} alt="gradation-img" />
-
-                <div className='textContainer'>
-                    <p className="playText">티빙 오리지널 콘테츠,</p>
-                    <p className="playText">방송, 영화, 해외시리즈까지!</p>
-                    <p className="playText">재미를 플레이해보세요.</p>
-                    
-                    <p className="joinText">간편하게 가입하고, 원하실 때 해지할 수 있어요.</p>
-                    
-                    <Link to="/join">
-                        <button className="detailBtn" type='button'>
-                            자세히보기
-                        </button>
-                    </Link>
-                </div>
-            </div> */}
-
+            <Link to="/join">
+                <button className="detailBtn" type='button'>
+                    자세히보기
+                </button>
+            </Link>
         </MainBannerStyle>
     )
 };
