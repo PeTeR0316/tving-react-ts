@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
@@ -10,28 +10,29 @@ import Nav from './nav';
 // `
 
 const HeaderStyle = styled.header`
-    width: 100%
-    height: 90px;
-    line-height: 90px;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-    position: fixed;
-    top: 0px;
-    padding: 0px 60px;
-    z-index: 99;
+    width: 100%;
+
+    .container {
+        width: 100%;
+        height: 90px;
+        line-height: 90px;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+        position: fixed;    
+        padding: 0px 60px;
+        z-index: 99;
+    }
     
+
     .backgroundColorBlack {
         background-color: #000000;
         opacity: 0.9;
+        transition: 0.5s linear;
     }
 
     .title {
         color: #ffffff;
         margin: 0;
         display: inline-block;
-    }
-
-    .visible {
-        opacity: 0.9;
     }
 
     .userMenu {
@@ -58,22 +59,24 @@ const HeaderStyle = styled.header`
 const Header = () => {
     const [scroll, setScroll] = useState<number>(0);
 
-    useEffect(() => {
-        setScroll(window.scrollY);
-        console.log(window.scrollY);
-    }, [scroll])
+    window.addEventListener(
+        "scroll", 
+        () => setScroll(window.scrollY)
+    );
 
     return (
-        <HeaderStyle className={scroll > 0 ? 'backgroundColorBlack' : ''}>
-            <Link to="/">
-                <h1 className='title'>TVING</h1>
-            </Link>
+        <HeaderStyle>
+            <div className={`container ${scroll > 0 ? 'backgroundColorBlack' : ''}`}>
+                <Link to="/">
+                    <h1 className='title'>TVING</h1>
+                </Link>
 
-            <Nav />
+                <Nav />
 
-            <div className="userMenu">
-                <button className="search">검색</button>
-                <div className="userImg"></div>
+                <div className="userMenu">
+                    <button className="search">검색</button>
+                    <div className="userImg"></div>
+                </div>
             </div>
         </HeaderStyle>
     )

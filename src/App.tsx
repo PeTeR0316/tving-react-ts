@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styled from 'styled-components'
 
 import MainPage from './pages/main';
+import LivePage from './pages/live';
+import MallPage from './pages/mall';
 
 const AppStyled = styled.div`
     width: 100%;
@@ -11,6 +13,7 @@ const AppStyled = styled.div`
 
     a {
         text-decoration: none;
+        color : #ffffff;
     }
 
     ul {
@@ -25,6 +28,8 @@ function App() {
             <AppStyled className="App">
                 <Routes>
                     <Route path="/" element={<MainPage />} />
+                    <Route path="/live" element={<LivePage />} />
+                    <Route path="/mall" element={<MallPage />} />
                 </Routes>
             </AppStyled>
         </BrowserRouter>

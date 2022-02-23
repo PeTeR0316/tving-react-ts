@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import ICONS from '../assets/icons';
 
 const NavStyle = styled.nav`
+    width: 500px;
+    height: 90px;
     color: #fefefe;
     display: inline-block;
-    height: 90px;
     vertical-align: top;
 
     .mainMenu {
@@ -34,11 +36,25 @@ const Nav = () => {
             <ul className="mainMenu">
                 <li className="mainMenuList live">
                     {/* <img className='live-icon' src={ICONS.ICON_MENU_LIVE} alt="live-icon" /> */}
-                    실시간
+                    <Link to="/live">
+                        실시간
+                    </Link>
                 </li>
-                <li className="mainMenuList">TV프로그램</li>
-                <li className="mainMenuList">영화</li>
-                <li className="mainMenuList">티빙몰</li>
+                <li className="mainMenuList">
+                    <Link to="/tv">
+                        TV프로그램
+                    </Link>
+                </li>
+                <li className="mainMenuList">
+                    <Link to="/movie">
+                        영화
+                    </Link>
+                </li>
+                <li className="mainMenuList">
+                    <Link to="/mall">
+                        티빙몰
+                    </Link>
+                </li>
             </ul>
         </NavStyle>
     )

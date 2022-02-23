@@ -59,7 +59,7 @@ const IMAGES = {
         }
     ],
 
-    INFINITY_SLIDE_1 : [
+    INFINITY_SLIDE_1: [
         '/assets/images/유퀴즈온더블럭.webp',
         '/assets/images/고스트닥터.webp',
         '/assets/images/공작도시.webp',
@@ -67,13 +67,24 @@ const IMAGES = {
         '/assets/images/발신제한.webp',
     ],
 
-    INFINITY_SLIDE_2 : [
+    INFINITY_SLIDE_2: [
         '/assets/images/배드앤크레이지.webp',
         '/assets/images/불가살.webp',
         '/assets/images/슬기로운의사생활.webp',
         '/assets/images/해피뉴이어.webp',
         '/assets/images/카타르월드컵.webp',
-    ]
+    ],
+
+    MAIN_EVENT: [
+        '/assets/images/event_1.webp',
+        '/assets/images/event_2.webp',
+        '/assets/images/event_3.webp',
+        '/assets/images/event_4.webp',
+        '/assets/images/event_5.webp'
+    ],
+
+    TIVING_MALL_LOGO : '/assets/images/logo.png',
+    TIVING_ORIGINAL_MALL_LOGO : '/assets/images/logo_tving_original.png'
 };
 
 export default IMAGES;

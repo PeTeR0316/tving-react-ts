@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Slider, { Settings } from 'react-slick';
 
 import '../../../assets/slick/slick.css';
@@ -15,12 +16,26 @@ interface PosterSlickProps {
 const PosterSlickPcStyle = styled.div`
     width: 100%;
 
-    .title {
-        color: #ffffff;
-        margin-left: 60px;
+    .titleArea {
+        height: 70px;
+        line-height: 70px;
+        display: flex;
+        justify-content: space-between;
+
+        .title {
+            color: #ffffff;
+            margin-left: 60px;
+            display: inline-block;
+        }
+
+        .totalListBtn {
+            color: #ffffff;
+            padding-right: 0px 60px;
+        }
     }
 
     .posterContainer {
+        padding-top: 30px;
         text-align: left;
 
         :first-child {
@@ -29,10 +44,13 @@ const PosterSlickPcStyle = styled.div`
 
         .posterImg {
             width: 245px;
+            border-radius: 5px;
         }
 
         .posterTitle {
             color: #ffffff;
+            display: inline-block;
+            padding-top: 10px;
         }
     }
 `;
@@ -44,15 +62,21 @@ const SliderStyle = styled(Slider)`
 const PosterSlickPc = ({title, category}: PosterSlickProps) => {
     const settings = {
         infinite: false,
-        centerPadding: "60px",
+        // centerPadding: "60px",
         slidesToShow: 6,
         speed: 500,
-        slidesPerRow: 1
+        slidesPerRow: 1,
     };
 
     return (
         <PosterSlickPcStyle>
-            <h2 className="title">{title}</h2>
+            <div className="titleArea">
+                <h2 className="title">{title}</h2>
+                <Link to="/list" className="totalListBtn">
+                    전체보기
+                </Link>
+            </div>
+
             <SliderStyle {...settings}>
                 {IMAGES.CONTENT_POSTER.map((poster, index) => {
                     return (

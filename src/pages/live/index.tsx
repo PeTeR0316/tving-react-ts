@@ -1,25 +1,20 @@
-import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-import IMAGES from '../../assets/images';
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import MainBanner from '../../components/main/pc/main-banner';
 import PosterSlickPc from '../../components/main/pc/poster-slick-pc';
-import MainEvent from '../../components/main/pc/main-event';
+import Notice from '../../components/live/notice';
 
-const MainPageStyle = styled.div`
-    width: 100%;
+const LiveStyle = styled.div`
     background-color: #000000;
-`
+`;
 
-const MainPage = () => {
+const LivePage = () => {
     return (
-        <MainPageStyle>
+        <LiveStyle>
             <Header />
-
-            <MainBanner />
 
             <PosterSlickPc title="티빙에서 꼭 봐야하는 콘텐츠" category="recommend" />
             <PosterSlickPc title="인기 프로그램" category="best" />
@@ -28,11 +23,11 @@ const MainPage = () => {
             <PosterSlickPc title="추억과 힙 사이, 그 때 그 시절" category="history" />
             <PosterSlickPc title="#TV프로그램 #휴머니즘" category="hashtag" />
 
-            <MainEvent />
+            <Notice />
 
             <Footer />
-        </MainPageStyle>
+        </LiveStyle>
     )
 };
 
-export default MainPage;
+export default LivePage;
