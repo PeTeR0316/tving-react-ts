@@ -83,8 +83,46 @@ const IMAGES = {
         '/assets/images/event_5.webp'
     ],
 
-    TIVING_MALL_LOGO : '/assets/images/logo.png',
-    TIVING_ORIGINAL_MALL_LOGO : '/assets/images/logo_tving_original.png'
+    TVING_MALL_LOGO : '/assets/images/logo.png',
+    TVING_ORIGINAL_MALL_LOGO : '/assets/images/logo_tving_original.png',
+
+    //EVENT
+    COUPON_01: '/assets/images/coupon-01.png',
+    COUPON_02: '/assets/images/coupon-02.png',
+
+    //REVIEW
+    REVIEW_IMG: [
+        '/assets/images/review-img-1.jpg',
+        '/assets/images/review-img-2.jpg',
+        '/assets/images/review-img-3.jpg',
+        '/assets/images/review-img-4.jpg',
+    ],
+
+    //SLIDESHOW IMG
+    SLIDESHOW_IMG : [
+        '/assets/images/tvingmall/slide-img1.jpg',
+        '/assets/images/tvingmall/slide-img2.jpg',
+        '/assets/images/tvingmall/slide-img3.jpg',
+        '/assets/images/tvingmall/slide-img4.jpg',
+        '/assets/images/tvingmall/slide-img5.jpg',
+        '/assets/images/tvingmall/slide-img6.jpg',
+        '/assets/images/tvingmall/slide-img7.jpg',
+    ],
+
+    PRODUCT_SLIDESHOW_IMG : [
+        '/assets/images/tvingmall/product-slide-img1.jpg',
+        '/assets/images/tvingmall/product-slide-img2.jpg',
+        '/assets/images/tvingmall/product-slide-img3.jpg',
+        '/assets/images/tvingmall/product-slide-img4.jpg',
+        '/assets/images/tvingmall/product-slide-img5.jpg',
+        '/assets/images/tvingmall/product-slide-img6.jpg',
+        '/assets/images/tvingmall/product-slide-img7.jpg',
+        '/assets/images/tvingmall/product-slide-img8.jpg',
+        '/assets/images/tvingmall/product-slide-img9.jpg',
+        '/assets/images/tvingmall/product-slide-img10.jpg',
+        '/assets/images/tvingmall/product-slide-img11.jpg',
+        '/assets/images/tvingmall/product-slide-img12.jpg',
+    ]
 };
 
 export default IMAGES;

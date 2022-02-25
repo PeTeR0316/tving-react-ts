@@ -36,7 +36,7 @@ const HeaderMall = () => {
         <HeaderMallStyle>
             <div className="headerContainer">
                 <Link to="/mall">
-                    <img className="mallLogo" src={IMAGES.TIVING_MALL_LOGO} alt="LOGO" />
+                    <img className="mallLogo" src={IMAGES.TVING_MALL_LOGO} alt="LOGO" />
                 </Link>
 
                 <input type="text" className="searchInput" name="search" placeholder="검색어를 입력해 주세요" />
