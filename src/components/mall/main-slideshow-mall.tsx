@@ -16,12 +16,34 @@ const MainSlideShowMallStyle = styled.div`
         border-radius: 30px;
         overflow: hidden;
         margin: 0px auto;
+        position: relative;
 
         .slideshowFrame {
             transition
             
             .slideImg {
                 display: inline-block;
+            }
+        }
+
+        .currentSlideNum {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(34,34,34,.3);
+            z-index: 99;
+            color: #ffffff;
+            letter-spacing: 5px;
+            border-radius: 40px;
+
+            p {
+                margin: 0px;
             }
         }
     }
@@ -90,7 +112,14 @@ const MainSlideShowMall = () => {
                         )
                     })}
                 </div>
+
+                <div className="currentSlideNum">
+                    <p className="slideNumText">
+                        <span>{slideshowNum + 1}</span>/<span>{slideshowImgName.length}</span>
+                    </p>
+                </div>
             </div>
+
             <button type="button" 
                 className="slideshowLeftBtn"
                 onClick={() => {
