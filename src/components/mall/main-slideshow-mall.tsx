@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -23,11 +23,32 @@ const MainSlideShowMallStyle = styled.div`
 `;
 
 const MainSlideShowMall = () => {
+    const [slideshow, setSlideshow] = useState<Array<string>>([
+        'slide-img1.jpg',
+        'slide-img2.jpg',
+        'slide-img3.jpg',
+        'slide-img4.jpg',
+        'slide-img5.jpg',
+        'slide-img6.jpg',
+        'slide-img7.jpg'
+    ]);
+    const slideUrl = 'https://tving-react-ts.s3.ap-northeast-2.amazonaws.com/mall/slideshow/'
+
+    useEffect(() => {
+        const slideEl = document.querySelector(".slideImg");
+        console.log(slideEl?.clientHeight)
+    })
+
     return (
         <MainSlideShowMallStyle>
             <div className="slideshowContainer">
                 <div className="slideshowFrame">
                     <img className="slideImg" src={IMAGES.SLIDESHOW_IMG[0]} alt="slide-img" />
+                    {/* {slideshow.map((imgName, index) => {
+                        return (
+                            <img className="slideImg" src={`${slideUrl}${imgName}`} alt="slide-img" key={index} />
+                        )
+                    })} */}
                 </div>
             </div>
         </MainSlideShowMallStyle>
