@@ -13,11 +13,11 @@ let params = {
     Bucket: 'tving-react-ts',
 }
 
-// router.get('/dict',  (req, res) => {
-//     let srcListArray = [];
+router.get('/dict',  (req, res) => {
+    let srcListArray = [];
 
-//     res.send("test")
-// });
+    res.send("test")
+});
 
 
 s3.listObjects(params).on('success', function handlePage(response) {
