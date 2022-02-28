@@ -13,25 +13,28 @@ let params = {
     Bucket: 'tving-react-ts',
 }
 
-router.get('/dict',  (req, res) => {
-    let srcListArray = [];
+router.get('/mall',  (req, res) => {
+    s3.listObjects(params).on('success', function handlePage(response) {
+        let srcListArray = [];
+        const regexForImgSrc = /^.*\//; //파일명만 가져오는 정규표현식
+    
+        //파일 이름만 불러오기
+        for(let name in response.data.Contents) {
+            //console.log(response.data.Contents[name].Key.replace(regexForImgSrc,''));
+            srcListArray.push(response.data.Contents[name].Key.replace(regexForImgSrc,''));
+        }
+    
+        //하위 폴더 리스트까지 전부 불러오기
+        if(response.hasNextPage()) {
+            response.nextPage().on('success', handlePage).send();
+        }
 
-    res.send("test")
+        // console.log(srcListArray);
+        res.send(srcListArray);
+    }).send();
+    
+
+    console.log("요청 ok!")
 });
-
-
-s3.listObjects(params).on('success', function handlePage(response) {
-    const regexForImgSrc = /^.*\//; //파일명만 가져오는 정규표현식
-
-    //파일 이름만 불러오기
-    for(let name in response.data.Contents) {
-        console.log(response.data.Contents[name].Key.replace(regexForImgSrc,''));
-    }
-
-    //하위 폴더 리스트까지 전부 불러오기
-    if(response.hasNextPage()) {
-        response.nextPage().on('success', handlePage).send();
-    }
-}).send();
 
 module.exports = router;

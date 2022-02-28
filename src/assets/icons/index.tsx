@@ -14,7 +14,11 @@ const ICONS = {
     SEARCH_ICON: '/assets/icons/icon_search.png',
 
     //별점
-    STAR : '/assets/icons/star.png'
+    STAR: '/assets/icons/star.png',
+
+    //슬라이드쇼 화살표
+    PC_ARROW_RIGHT: '/assets/icons/PC_arrow_R_goods.png',
+    PC_ARROW_LEFT: '/assets/icons/PC_arrow_L_goods.png',
 };
 
 export default ICONS;
