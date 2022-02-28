@@ -23,6 +23,7 @@ const HeaderMallStyle = styled.header`
             border : 1px solid #d8d8d8;
             border-radius: 25px;
             padding-left: 20px;
+            outline: none;
         }
 
         .userArea {
