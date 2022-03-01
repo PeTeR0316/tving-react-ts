@@ -55,6 +55,7 @@ const MainSlideShowMallStyle = styled.div`
         top: 50%;
         left: 180px;
         transform: translateY(-50%);
+        cursor: pointer;
     }
 
     .slideshowRightBtn {
@@ -64,6 +65,7 @@ const MainSlideShowMallStyle = styled.div`
         top: 50%;
         right: 180px;
         transform: translateY(-50%);
+        cursor: pointer;
     }
 `;
 
@@ -72,7 +74,7 @@ const MainSlideShowMall = () => {
     const slideUrl = 'https://tving-react-ts.s3.ap-northeast-2.amazonaws.com/mall/slideshow/';
     const [slideshowImgName, setSlideshowImgName] = useState<Array<string>>([]);
     const [slideshowCount, setSlideshowCount] = useState<number>(1);
-    const [slideshowNum, setSlideshowNum] = useState<number>(0)
+    const [slideshowNum, setSlideshowNum] = useState<number>(0);
 
     //s3 버킷에서 슬라이드쇼 이미지 파일명 요청
     useEffect(() => {
@@ -84,18 +86,18 @@ const MainSlideShowMall = () => {
             .catch(err => console.log(err))
     },[]);
 
-    //슬라이드쇼 함수
-    useEffect(() => {
-        const slideIndex =setInterval(() => {
-            if(slideshowNum === 6) {
-                setSlideshowNum(0);
-            } else {
-                setSlideshowNum(slideshowNum + 1);
-            }
-        },4000);
+    //자동 슬라이드쇼 함수
+    // useEffect(() => {
+    //     const slideIndex =setInterval(() => {
+    //         if(slideshowNum === 6) {
+    //             setSlideshowNum(0);
+    //         } else {
+    //             setSlideshowNum(slideshowNum + 1);
+    //         }
+    //     },4000);
 
-        return () => clearInterval(slideIndex);
-    });
+    //     return () => clearInterval(slideIndex);
+    // });
 
     return (
         <MainSlideShowMallStyle>
@@ -103,14 +105,15 @@ const MainSlideShowMall = () => {
                 <div className="slideshowFrame" 
                     style={{ 
                         width: `${slideshowCount * 100}%`,
-                        marginLeft: `${-1400 * slideshowNum}px`
+                        marginLeft: `${-1400 * slideshowNum}px`,
+                        transition: `0.5s ease 0s`
                     }}>
-                    {/* <img className="slideImg" src={IMAGES.SLIDESHOW_IMG[0]} alt="slide-img" /> */}
-                    {slideshowImgName.map((imgName, index) => {
+                    <img className="slideImg" src={IMAGES.SLIDESHOW_IMG[0]} alt="slide-img" />
+                    {/* {slideshowImgName.map((imgName, index) => {
                         return (
                             <img className="slideImg" src={`${slideUrl}${imgName}`} alt="slide-img" key={index} />
                         )
-                    })}
+                    })} */}
                 </div>
 
                 <div className="currentSlideNum">
