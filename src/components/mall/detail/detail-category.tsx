@@ -2,88 +2,37 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-import IMAGES from "../../assets/images";
-import ICONS from "../../assets/icons";
+import IMAGES from "../../../assets/images";
+import ICONS from "../../../assets/icons";
 
 interface ProductInfoType {
     name:string,
     imgSrc:string,
     price:number,
     discountRate:number
-
 }
 
-const PopularMallStyle = styled.div`
-    width: 100%;
-    height: 570px;
-    background-color: #f8f6ea;
-    position: relative;
+const DetailCategoryStyle = styled.div`
+    .detailCategoryContainer {
+        width: 1240px;
+        margin: 0 auto;
+        position: relative;
 
-    .popularContainer {
-        width: 1400px;
-        height: 50px;
-        margin-top: 70px;
-        padding-top: 50px;
-        margin: 0px auto;
-
-        .titleArea {
-            position: relative;
-            width: 1400px;
-            height: 49px;
-            
-            .title {
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 49px;
-                font-weight: 700;
-                font-size: 36px;
-                line-height: 49px;
-                margin: 0px;
-                z-index: 2;
-            }
-
-            .highlight {
-                position: absolute;
-                left: 0;
-                bottom: 0;
-                display: block;
-                width: 212px;
-                height: 20px;
-                background-color: #f0eac5;
-                z-index: 1;
-            }
-
-            .moreBtn {
-                width: 66px;
-                height: 32px;
-                line-height: 32px;
-                border: 1px solid #cccccc;
-                border-radius: 18px;
-                background-color: #ffffff;
-                text-align: center;
-                color: #000000;
-                float: right;
-                font-size: 12px;
-                font-weight: 400;
-                margin-top: 7px;
-            }
+        .title {
+            text-align: center;
         }
 
-        .goodsSlideshowArea {
+        .categoryGoodsSlideArea {
+            width: 100%;
+            height: 310xp;
             overflow: hidden;
-            
-            .goodsSlideshowFrame {
-                margin-top: 50px;
 
+            .slideshowFrame {
                 .goodsList {
                     display: inline-block;
-                    width: 232px;
+                    width: 310px;
                     vertical-align: top;
-
-                    :not(:nth-child(5n)) {
-                        padding-right: 60px;
-                    }
+                    // padding-right: 60px;
 
                     .goodsListLink {
                         color: #202020;
@@ -123,90 +72,45 @@ const PopularMallStyle = styled.div`
             }
         }
 
-        .slideNumDotted {
-            text-align: center;
-
-            .dotted{
-                display: inline-block;
-                width: 7px;
-                height: 7px;
-                border: 1px solid #000000;
-                border-radius: 7px;
-                background-color: #000000;
-                margin-right: 10px;
-            }
-
-            .currentDotted {
-                display: inline-block;
-                width: 7px;
-                height: 7px;
-                border: 1px solid #c7c7c7;
-                border-radius: 7px;
-                background-color: #ffffff;
-                margin-right: 10px;
-            }
-        }
-
         .slideLeftBtn {
-            background-color: #f8f6ea;
+            background-color: #ffffff;
             border: none;
             position: absolute;
             top: 50%;
-            left: 180px;
+            left: -100px;
             transform: translateY(-50%);
             cursor: pointer;
         }
     
         .slideRightBtn {
-            background-color: #f8f6ea;
+            background-color: #ffffff;
             border: none;
             position: absolute;
             top: 50%;
-            right: 180px;
+            right: -100px;
             transform: translateY(-50%);
             cursor: pointer;
         }
     }
-`
+`;
 
-const PopularMall = () => {
-    const [slideshowCount, setSlideshowCount] = useState<number>(5);
-    const [slideshowNum, setSlideshowNum] = useState<number>(0);
+const DetailCategory = () => {
+    const [categoryGoodsCount , setCategoryGoodsCount] = useState<number>(
+        Math.ceil(IMAGES.PRODUCT_SLIDESHOW_IMG_DUMMY.length / 4)
+    );
+    const [slideshowNum ,setSlideshowNum] = useState<number>(0);
     const [goodsCount, setGoodsCount] = useState<number>(0);
 
-    useEffect(() => setGoodsCount(Math.ceil(IMAGES.PRODUCT_SLIDESHOW_IMG_DUMMY.length / 5)),[]);
-
-    const dottedFn = () => {
-        let dottedEl = [];
-
-        for(let startNum = 0; startNum < goodsCount; startNum++) {
-            dottedEl.push(
-                <div className={slideshowNum === startNum ? "dotted" : "currentDotted"}
-                    onClick = {() => setSlideshowNum(startNum)}
-                    key={startNum}
-                >
-                </div>
-            );
-        }
-
-        return dottedEl;
-    }
 
     return (
-        <PopularMallStyle>
-            <div className="popularContainer">
-                <div className="titleArea">
-                    <h2 className="title">인기 급상승</h2>
-                    <span className="highlight"></span>
-
-                    <Link to="goods" className="moreBtn">더보기</Link>
-                </div>
-                
-                <div className="goodsSlideshowArea">
-                    <div className="goodsSlideshowFrame"
+        <DetailCategoryStyle>
+            <div className="detailCategoryContainer">
+                <h2 className="title">카테고리 BEST & NEW</h2>
+                <div className="categoryGoodsSlideArea">
+                    <div className="slideshowFrame" 
                         style={{
-                            width: `${slideshowCount * 100}%`, 
-                            marginLeft: `${-1400 * slideshowNum}px`,
+                            width: `${categoryGoodsCount * 100}%`, 
+                            marginLeft: `${-1240 * slideshowNum}px`,
                             transition: `0.5s ease 0s`
                         }}
                     >
@@ -238,10 +142,6 @@ const PopularMall = () => {
                     </div>
                 </div>
 
-                <div className="slideNumDotted">
-                        {dottedFn()}
-                </div>
-
                 <button type="button" 
                     className="slideLeftBtn"
                     onClick={() => {
@@ -256,7 +156,7 @@ const PopularMall = () => {
                 <button type="button" 
                     className="slideRightBtn"
                     onClick={() => {
-                        if(slideshowNum !== goodsCount - 1) {
+                        if(slideshowNum !== categoryGoodsCount - 1) {
                             setSlideshowNum(slideshowNum + 1);
                         }
                     }}
@@ -264,8 +164,8 @@ const PopularMall = () => {
                     <img src={ICONS.PC_ARROW_RIGHT} alt="rightBtn" />
                 </button>
             </div>
-        </PopularMallStyle>
+        </DetailCategoryStyle>
     )
 };
 
-export default PopularMall;
+export default DetailCategory;

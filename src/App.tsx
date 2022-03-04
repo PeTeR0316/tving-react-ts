@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import MainPage from './pages/main';
 import LivePage from './pages/live';
 import MallPage from './pages/mall';
+import GoodsDetailMall from './pages/mall/goods-detail-mall';
 
 const AppStyled = styled.div`
     width: 100%;
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/" element={<MainPage />} />
                     <Route path="/live" element={<LivePage />} />
                     <Route path="/mall" element={<MallPage />} />
+                    <Route path="/goods/view/" element={<GoodsDetailMall />} />
                 </Routes>
             </AppStyled>
         </BrowserRouter>

@@ -37,6 +37,7 @@ const NavMallStyle = styled.nav`
             height: 600px;
             background-color: #ffffff;
             position: absolute;
+            z-index: 99;
         }
     }
 

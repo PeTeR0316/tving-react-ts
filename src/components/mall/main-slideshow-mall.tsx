@@ -37,7 +37,7 @@ const MainSlideShowMallStyle = styled.div`
             bottom: 20px;
             right: 20px;
             background-color: rgba(34,34,34,.3);
-            z-index: 99;
+            z-index: 90;
             color: #ffffff;
             letter-spacing: 5px;
             border-radius: 40px;

@@ -122,7 +122,98 @@ const IMAGES = {
         '/assets/images/tvingmall/product-slide-img10.jpg',
         '/assets/images/tvingmall/product-slide-img11.jpg',
         '/assets/images/tvingmall/product-slide-img12.jpg',
-    ]
+    ],
+
+    //더미 데이터
+    PRODUCT_SLIDESHOW_IMG_DUMMY: [
+        {
+            name: "2022 매일매일 신묘한 일력(신서유기 캘린더)",
+            imgSrc: "/assets/images/tvingmall/product-slide-img1.jpg",
+            price: 17000,
+            discountRate: 54
+            
+        },
+        {
+            name: "라켓보이즈 맨투맨[출고지연 상품]",
+            imgSrc: "/assets/images/tvingmall/product-slide-img2.jpg",
+            price: 49000,
+            discountRate: 0
+            
+        },
+        {
+            name: "[YES24] 술꾼도시여자들 시즌1",
+            imgSrc: "/assets/images/tvingmall/product-slide-img3.jpg",
+            price: 17000,
+            discountRate: 10
+            
+        },
+        {
+            name: "[유료회원 10%쿠폰][EMERGENCY] EMERGENCY 로고 후드티 B",
+            imgSrc: "/assets/images/tvingmall/product-slide-img4.jpg",
+            price: 56000,
+            discountRate: 15
+            
+        },
+        {
+            name: "대탈출 타임머신 마그넷 세트",
+            imgSrc: "/assets/images/tvingmall/product-slide-img5.jpg",
+            price: 20000,
+            discountRate: 0
+            
+        },
+        {
+            name: "대탈출 타임머신 TIME is GOLD 머그컵 (블랙)",
+            imgSrc: "/assets/images/tvingmall/product-slide-img6.jpg",
+            price: 15000,
+            discountRate: 0 
+            
+        },
+        {
+            name: "2022 유퀴즈X양지 다이어리",
+            imgSrc: "/assets/images/tvingmall/product-slide-img7.jpg",
+            price: 15000,
+            discountRate: 0 
+            
+        },
+        {
+            name: "[9,10화 착용] EMERGENCY 이머전시 슬리퍼",
+            imgSrc: "/assets/images/tvingmall/product-slide-img8.jpg",
+            price: 24900,
+            discountRate: 61
+            
+        },
+        {
+            name: "[스물다섯 스물하나] 공식 스티커 5종",
+            imgSrc: "/assets/images/tvingmall/product-slide-img9.jpg",
+            price: 10000,
+            discountRate: 0
+            
+        },
+        {
+            name: "[스물다섯 스물하나] 공식 키링",
+            imgSrc: "/assets/images/tvingmall/product-slide-img10.jpg",
+            price: 12000,
+            discountRate: 0 
+            
+        },
+        {
+            name: "아받대x놀토 받아쓰기 원샷노트",
+            imgSrc: "/assets/images/tvingmall/product-slide-img11.jpg",
+            price: 10000,
+            discountRate: 32
+            
+        },
+        {
+            name: "아받대x놀토 받아쓰기 떡메모지",
+            imgSrc: "/assets/images/tvingmall/product-slide-img12.jpg",
+            price: 6000,
+            discountRate: 34
+            
+        },
+    ],
+
+    //상품상세 이미지
+    GOODS_DETAIL_IMG: '/assets/images/tvingmall/라켓보이즈 상세이미지.jpg',
 };
 
 export default IMAGES;
