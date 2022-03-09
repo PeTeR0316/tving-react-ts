@@ -34,7 +34,7 @@ router.get('/mall',  (req, res) => {
     }).send();
     
 
-    console.log("요청 ok!")
+    // console.log("요청 ok!")
 });
 
 module.exports = router;

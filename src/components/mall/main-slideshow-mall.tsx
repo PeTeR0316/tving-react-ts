@@ -83,21 +83,21 @@ const MainSlideShowMall = () => {
                 setSlideshowImgName(response.data.filter((src:string) => src !== ''));
                 setSlideshowCount(response.data.length - 2);
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err));
     },[]);
 
     //자동 슬라이드쇼 함수
-    // useEffect(() => {
-    //     const slideIndex =setInterval(() => {
-    //         if(slideshowNum === 6) {
-    //             setSlideshowNum(0);
-    //         } else {
-    //             setSlideshowNum(slideshowNum + 1);
-    //         }
-    //     },4000);
+    useEffect(() => {
+        const slideIndex =setInterval(() => {
+            if(slideshowNum === 6) {
+                setSlideshowNum(0);
+            } else {
+                setSlideshowNum(slideshowNum + 1);
+            }
+        },4000);
 
-    //     return () => clearInterval(slideIndex);
-    // });
+        return () => clearInterval(slideIndex);
+    });
 
     return (
         <MainSlideShowMallStyle>
@@ -108,12 +108,12 @@ const MainSlideShowMall = () => {
                         marginLeft: `${-1400 * slideshowNum}px`,
                         transition: `0.5s ease 0s`
                     }}>
-                    <img className="slideImg" src={IMAGES.SLIDESHOW_IMG[0]} alt="slide-img" />
-                    {/* {slideshowImgName.map((imgName, index) => {
+                    {/* <img className="slideImg" src={IMAGES.SLIDESHOW_IMG[0]} alt="slide-img" /> */}
+                    {slideshowImgName.map((imgName, index) => {
                         return (
                             <img className="slideImg" src={`${slideUrl}${imgName}`} alt="slide-img" key={index} />
                         )
-                    })} */}
+                    })}
                 </div>
 
                 <div className="currentSlideNum">

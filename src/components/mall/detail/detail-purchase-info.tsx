@@ -1,6 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+
+interface GoodsInfo {
+    code_number: number,
+    goods_name: string,
+    price: number,
+    discount_price?: number;
+    discount_rate?: number;
+    brand: string,
+    ship_information: string
+};
 
 const DetailPurchaseInfoStyle = styled.div`
     .detailPurchaseInfoContainer {
@@ -26,6 +37,47 @@ const DetailPurchaseInfoStyle = styled.div`
                 .priceArea {
                     display: flex;
                     justify-content: space-between;
+
+                    .countArea {
+                        height: 36px;
+                        border: 1px solid #dddddd;
+                        background-color: #ffffff;
+
+                        .countInput {
+                            width: 30px;
+                            height: 28px;
+                            border: none;
+                            text-align: center;
+                            outline: none;
+
+                            ::-webkit-outer-spin-button,
+                            ::-webkit-inner-spin-button {
+                                -webkit-appearance: none;
+                                -moz-appearance: textfield;
+                                margin: 0;
+                            }
+                        }
+    
+                        .minus {
+                            width: 36px;
+                            height: 36px;
+                            border: none;
+                            background-color: #ffffff;
+                            border-right: 1px solid #dddddd;
+                            font-size: 16px;
+                            color: #999999;
+                        }
+    
+                        .plus {
+                            width: 36px;
+                            height: 36px;
+                            border: none;
+                            background-color: #ffffff;
+                            border-left: 1px solid #dddddd;
+                            font-size: 16px;
+                            color: #999999;
+                        }
+                    }
                 }
             }
 
@@ -59,6 +111,13 @@ const DetailPurchaseInfoStyle = styled.div`
 
 const DetailPurchaseInfo = () => {
     const [purchaseCount, setPurchaseCount] = useState<number>(1);
+    const [goodsInformation, setGoodsInformation] = useState({} as GoodsInfo);
+
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:3001/info/goods`)
+        .then(response => setGoodsInformation(response.data[0]))
+        .catch(err => console.log(err));
+    },[]);
 
     return (
         <DetailPurchaseInfoStyle>
@@ -70,7 +129,7 @@ const DetailPurchaseInfo = () => {
                                 상품번호
                             </span>
                             <span>
-                                873982
+                                {goodsInformation.code_number}
                             </span>
                         </li>
                         <li className="infoList">
@@ -78,7 +137,7 @@ const DetailPurchaseInfo = () => {
                                 배송정보
                             </span>
                             <span>
-                                40,000원 이상 무료 미만 3,000원
+                                {goodsInformation.ship_information}
                             </span>
                         </li>
                         <li className="infoList">
@@ -86,7 +145,7 @@ const DetailPurchaseInfo = () => {
                                 브랜드
                             </span>
                             <span>
-                                tvN SHOP
+                                {goodsInformation.brand}
                             </span>
                         </li>
                         <li className="infoList">
@@ -113,26 +172,54 @@ const DetailPurchaseInfo = () => {
                 <div className="totalPriceArea">
                     <div className="purchaseCountArea">
                         <p className="goodsTitle">
-                            라켓보이즈 맨투맨[출고 지연 상품]
+                            {goodsInformation.goods_name}
                         </p>
                         <div className="priceArea">
-                            <input type="number" 
-                                className="countInput" 
-                                value={purchaseCount} 
-                                onChange={({target}) => setPurchaseCount(parseInt(target.value))}
-                            />
-                            <span className="totalPrice">{purchaseCount * 98000}</span>
+                            <div className="countArea">
+                                <button className="minus" 
+                                    type="button"
+                                    onClick={() => {
+                                        if(purchaseCount > 1) {
+                                            setPurchaseCount(purchaseCount - 1)
+                                        } else {
+                                            alert("최소 구매 수량은 1 이상입니다.")
+                                        }
+                                    }}
+                                >
+                                    -
+                                </button>
+                                <input type="number" 
+                                    className="countInput" 
+                                    value={purchaseCount} 
+                                    onChange={({target}) => setPurchaseCount(parseInt(target.value))}
+                                />
+                                <button className="plus" 
+                                    type="button"
+                                    onClick={() => setPurchaseCount(purchaseCount + 1)}
+                                
+                                >
+                                    +
+                                </button>
+                            </div>
+                            
+                            <span className="totalPrice">{purchaseCount * goodsInformation.price}</span>
                         </div>
                     </div>
                     
                     <p className="totalPriceArea">
                         <span>총 상품가</span>
-                        <span>{purchaseCount * 98000}원</span>
+                        <span>{purchaseCount * goodsInformation.price}원</span>
                     </p>
 
                     <div className="purchaseBtn">
-                        <button type="button" className="cartBtn">장바구니</button>
-                        <button type="button" className="purchaseBtn">바로구매</button>
+                        <button type="button" className="cartBtn"
+                            onClick={() => alert(setGoodsInformation.name)}
+                        >
+                            장바구니
+                        </button>
+                        <button type="button" className="purchaseBtn">
+                            바로구매
+                        </button>
                     </div>
                 </div>
             </div>
