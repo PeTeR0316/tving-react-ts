@@ -9,6 +9,12 @@ const ICONS = {
     INSTARGRAM_ICON: '/assets/icons/icon_instagram.png',
     FOOTER_FACEBOOK_ICON: '/assets/icons/footer-facebook.png',
 
+    //검색
+    SEARCH_ICON_WHITE: '/assets/icons/icon_search_white.svg',
+
+    //사용자 아이콘
+    USER_ICON: '/assets/icons/icno_user.webp',
+
     //MALL
     CART_ICON: '/assets/icons/icon_cart.png',
     SEARCH_ICON: '/assets/icons/icon_search.png',

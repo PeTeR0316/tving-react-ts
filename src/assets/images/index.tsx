@@ -10,16 +10,28 @@ const IMAGES = {
     ],
 
     MAIN_BANNER: [
+        // {
+        //     src: '/assets/images/기상청 사람들 포스터.webp',
+        //     subTitle: ''
+        // },
+        // {
+        //     src: '/assets/images/아무도 없는 곳.webp',
+        //     subTitle: ''
+        // },
+        // {
+        //     src: '/assets/images/월요일이 사라졌다.webp',
+        //     subTitle: '흩어지면 죽는다! 일곱 쌍둥이의 목숨을 건 생존 팀플레이'
+        // }
         {
-            src: '/assets/images/기상청 사람들 포스터.webp',
+            src: '기상청 사람들 포스터.webp',
             subTitle: ''
         },
         {
-            src: '/assets/images/아무도 없는 곳.webp',
+            src: '아무도 없는 곳.webp',
             subTitle: ''
         },
         {
-            src: '/assets/images/월요일이 사라졌다.webp',
+            src: '월요일이 사라졌다.webp',
             subTitle: '흩어지면 죽는다! 일곱 쌍둥이의 목숨을 건 생존 팀플레이'
         }
     ],

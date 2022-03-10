@@ -19,7 +19,6 @@ const MainSlideShowMallStyle = styled.div`
         position: relative;
 
         .slideshowFrame {
-            transition
             
             .slideImg {
                 display: inline-block;

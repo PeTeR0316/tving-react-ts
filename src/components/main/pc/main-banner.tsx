@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import axios from "axios";
 import Slider, { Settings } from 'react-slick';
 
 import '../../../assets/slick/slick.css';
@@ -16,21 +17,30 @@ interface itemsProps {
 
 const MainBannerStyle = styled.div`
     width: 100%;
-    position: relative;
 
     .bannerContainer {
+        width: 100%;
         position: relative;
+        overflow: hidden;
+        
+        .slideshowFrame {
+            .slideImgArea {
+                width: ${window.innerWidth}px;
+                max-width: 1903px;
+                display: inline-block;
 
-        .bannerImg {
-            width: 100%;
-        }
-
-        .bannerSubtitle {
-            color: #dddddd;
-            font-size: 24px;
-            position: absolute;
-            left: 70px;
-            bottom: 200px;
+                .bannerImg {
+                    width: 100%;
+                }
+        
+                .bannerSubtitle {
+                    color: #dddddd;
+                    font-size: 24px;
+                    position: absolute;
+                    left: 70px;
+                    bottom: 200px;
+                }
+            }
         }
     }
 
@@ -51,42 +61,50 @@ const MainBannerStyle = styled.div`
         right: 30px;
         bottom: 30px;
     }
-`
 
-const SliderStyle = styled(Slider)`
-    .slick-dots {
-        display: inline-block; 
-
-        li {
-            display: inline-block; 
-
-            button {
-                ::before{
-                    color: #ffffff;
-                    
-                }
-            }
-        }
+    .slideshowContainer {
+        width: 1400px;
+        height: 540px;
+        border-radius: 30px;
+        overflow: hidden;
+        margin: 0px auto;
+        position: relative;
     }
 `
 
 const MainBanner = () => {
-    const [autoSlideValue, setAutoSlideValue] = useState<boolean>(true)
+    const [autoSlideValue, setAutoSlideValue] = useState<boolean>(true);
+    const slideUrl = 'https://tving-react-ts.s3.ap-northeast-2.amazonaws.com/main/main-slide-img/';
+    const [slideshowImgName, setSlideshowImgName] = useState<Array<string>>([]);
+    const [slideshowCount, setSlideshowCount] = useState<number>(1);
+    const [slideshowNum, setSlideshowNum] = useState<number>(0);
 
-    const settings = {
-        dots: true,
-        fade: true,
-        infinite: true,
-        autoplay: autoSlideValue,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        loop: true,
-    };
+    //s3 버킷에서 슬라이드쇼 이미지 파일명 요청
+    useEffect(() => {
+        axios.get(`http://127.0.0.1:3001/slideshow/main`)
+            .then(response => {
+                setSlideshowImgName(response.data.filter((src:string) => src !== ''));
+                setSlideshowCount(response.data.length - 1);
+            })
+            .catch(err => console.log(err));
+    },[]);
+
+    //자동 슬라이드쇼 함수
+    useEffect(() => {
+        const slideIndex =setInterval(() => {
+            if(slideshowNum === slideshowCount) {
+                setSlideshowNum(0);
+            } else {
+                setSlideshowNum(slideshowNum + 1);
+            }
+        },4000);
+
+        return () => clearInterval(slideIndex);
+    });
 
     return (
         <MainBannerStyle>
-            <SliderStyle {...settings}>
+            {/* <SliderStyle {...settings}>
                 {IMAGES.MAIN_BANNER.map((banner, index) => {
                     return (
                         <div className="bannerContainer" key={index}>
@@ -97,7 +115,33 @@ const MainBanner = () => {
                         </div>
                     )
                 })}
-            </SliderStyle>
+            </SliderStyle> */}
+
+
+            <div className="bannerContainer">
+                <div className="slideshowFrame" 
+                    style={{ 
+                        width: `${slideshowCount * window.innerWidth + 50}px`,
+                        marginLeft: `${-100 * slideshowNum}%`,
+                        transition: `0.5s ease 0s`
+                    }}>
+                    {slideshowImgName.map((imgName, index) => {
+                        console.log(slideshowImgName);
+                        return (
+                            <div className="slideImgArea" key={index}
+                                // style={{
+                                //     backgroundImage: `url(${slideUrl}${imgName})`
+                                // }}
+                            >
+                                <img className="bannerImg" src={`${slideUrl}${imgName}`} alt={`banner${index}`} />
+                                {/* <span className="bannerSubtitle">
+                                    {banner.subTitle}
+                                </span> */}
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
 
             {/* <button type="button" 
                 onClick={() => {
@@ -111,11 +155,11 @@ const MainBanner = () => {
                 />
             </button> */}
 
-            <Link to="/join">
+            {/* <Link to="/join">
                 <button className="detailBtn" type='button'>
                     자세히보기
                 </button>
-            </Link>
+            </Link> */}
         </MainBannerStyle>
     )
 };
