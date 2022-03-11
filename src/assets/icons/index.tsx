@@ -25,6 +25,8 @@ const ICONS = {
     //슬라이드쇼 화살표
     PC_ARROW_RIGHT: '/assets/icons/PC_arrow_R_goods.png',
     PC_ARROW_LEFT: '/assets/icons/PC_arrow_L_goods.png',
+    PC_ARROW_RIGHT_WHITE: '/assets/icons/icon_slide_right_white.svg',
+    PC_ARROW_LEFT_WHITE: '/assets/icons/icon_slide_left_white.svg',
 };
 
 export default ICONS;

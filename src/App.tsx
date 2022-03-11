@@ -6,6 +6,7 @@ import MainPage from './pages/main';
 import LivePage from './pages/live';
 import MallPage from './pages/mall';
 import GoodsDetailMall from './pages/mall/goods-detail-mall';
+import Contents from './components/contents';
 
 const AppStyled = styled.div`
     width: 100%;
@@ -32,6 +33,10 @@ function App() {
                     <Route path="/live" element={<LivePage />} />
                     <Route path="/mall" element={<MallPage />} />
                     <Route path="/goods/view/" element={<GoodsDetailMall />} />
+                    <Route path="/contents/:contentsId" element={<Contents />} />
+                    {/* <Route path="/contents/*">
+                        <Route path=":contentsId" element={<Contents />} />
+                    </Route> */}
                 </Routes>
             </AppStyled>
         </BrowserRouter>

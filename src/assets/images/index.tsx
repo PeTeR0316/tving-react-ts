@@ -10,18 +10,6 @@ const IMAGES = {
     ],
 
     MAIN_BANNER: [
-        // {
-        //     src: '/assets/images/기상청 사람들 포스터.webp',
-        //     subTitle: ''
-        // },
-        // {
-        //     src: '/assets/images/아무도 없는 곳.webp',
-        //     subTitle: ''
-        // },
-        // {
-        //     src: '/assets/images/월요일이 사라졌다.webp',
-        //     subTitle: '흩어지면 죽는다! 일곱 쌍둥이의 목숨을 건 생존 팀플레이'
-        // }
         {
             src: '기상청 사람들 포스터.webp',
             subTitle: ''
@@ -70,6 +58,9 @@ const IMAGES = {
             title: '드래곤볼Z 1기'
         }
     ],
+
+    //배너 이미지
+    THIN_BANNER: '/assets/images/banner-img-1.jpg',
 
     INFINITY_SLIDE_1: [
         '/assets/images/유퀴즈온더블럭.webp',
