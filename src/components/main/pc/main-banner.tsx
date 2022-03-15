@@ -135,7 +135,7 @@ const MainBanner = () => {
         },4000);
 
         return () => clearInterval(slideIndex);
-    });
+    },[]);
 
     const dottedFn = () => {
         let dottedEl = [];
