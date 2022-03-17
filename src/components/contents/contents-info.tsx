@@ -12,7 +12,7 @@ interface ContentsProps {
     contentsId : string,
 }
 
-type ContentsInfo = {
+type ContentsInfoType = {
     age: string;
     broadcasting_time: string;
     cast: string;
@@ -41,6 +41,7 @@ const ContentsInfoStyle = styled.div`
         .contentsInfoArea {
             display: inline-block;
             color: #bbb7b4;
+            width: 40rem;
 
             .categoryArea {
                 padding-top: 8px;
@@ -93,6 +94,7 @@ const ContentsInfoStyle = styled.div`
 
         .posterImg {
             width: 22rem;
+            height: 32.1rem;
             padding-right: 60px;
         }
     }
@@ -101,12 +103,27 @@ const ContentsInfoStyle = styled.div`
 const ContentsInfo = () => {
     const {contentsId} = useParams();
     const posterUrl = 'https://tving-react-ts.s3.ap-northeast-2.amazonaws.com/main/popular-poster/';
-    const [selectContentinfo, setSelectContentinfo] = useState([] as ContentsInfo[]);
+    const [selectContentinfo, setSelectContentinfo] = useState<Array<ContentsInfoType>>([{
+        age: '',
+        broadcasting_time: '',
+        cast: '',
+        contents_code: '',
+        contents_name: '',
+        contents_type: '',
+        explanation: '',
+        producer: '',
+        provider: '',
+        running_time: ''
+    }]);
     
+    const readInfo = async () => {
+        await axios.get(`http://127.0.0.1:3001/contents/posterInfo/${contentsId}`)
+            .then((response) => (setSelectContentinfo(response.data)))
+            .catch(err => console.log(err))
+    }
+
     useEffect(() => {
-        axios.get(`http://127.0.0.1:3001/contents/posterInfo/${contentsId}`)
-            .then(response => setSelectContentinfo(response.data))
-            .catch(err => console.log(err));
+        readInfo();
     },[]);
 
     return (
@@ -121,6 +138,7 @@ const ContentsInfo = () => {
                         {selectContentinfo[0].contents_type !== "" ? <li className='categoryList'>{selectContentinfo[0].contents_type}</li> : ""}
                         {selectContentinfo[0].running_time !== "" ? <li className='categoryList'>{selectContentinfo[0].running_time}</li> : ""}
                         {selectContentinfo[0].provider !== "" ? <li className='categoryList'>{selectContentinfo[0].provider}</li> : ""}
+                        
                     </ul>
 
                     <ul className="contentsBtn">
@@ -153,6 +171,7 @@ const ContentsInfo = () => {
                     alt="poster-img" 
                 />
 
+                {/* <img className='posterImg' src={IMAGES.CONTENT_POSTER[0].src} alt="" /> */}
             </div>
         </ContentsInfoStyle>
     )
