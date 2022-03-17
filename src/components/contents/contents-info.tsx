@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useParams  } from 'react-router-dom';
 import axios from 'axios';
 
-import Header from '../header';
+import ShareModalPopup from './share-modal-popup';
 
 import IMAGES from '../../assets/images';
 import { StringForNextToken } from 'aws-sdk/clients/s3control';
@@ -74,6 +74,7 @@ const ContentsInfoStyle = styled.div`
                 .like, .share {
                     margin-right: 1.333rem;
                     color: #dfdfdf;
+                    position: relative;
 
                     :hover {
                         color: #ffffff;
@@ -115,6 +116,7 @@ const ContentsInfo = () => {
         provider: '',
         running_time: ''
     }]);
+    const [shareValue, setShareValue] = useState<boolean>(false);
     
     const readInfo = async () => {
         await axios.get(`http://127.0.0.1:3001/contents/posterInfo/${contentsId}`)
@@ -137,7 +139,16 @@ const ContentsInfo = () => {
                         {selectContentinfo[0].broadcasting_time !== "" ? <li className='categoryList'>{selectContentinfo[0].broadcasting_time}</li> : ""}
                         {selectContentinfo[0].contents_type !== "" ? <li className='categoryList'>{selectContentinfo[0].contents_type}</li> : ""}
                         {selectContentinfo[0].running_time !== "" ? <li className='categoryList'>{selectContentinfo[0].running_time}</li> : ""}
-                        {selectContentinfo[0].provider !== "" ? <li className='categoryList'>{selectContentinfo[0].provider}</li> : ""}
+                        {selectContentinfo[0].provider !== "" ? 
+                            <span>
+                                {selectContentinfo[0].provider.split(',').map((providerName) => {
+                                    return(
+                                        <li className='categoryList'>{providerName}</li>
+                                    )
+                                })}
+                            </span> 
+                            : ""
+                        }
                         
                     </ul>
 
@@ -148,8 +159,11 @@ const ContentsInfo = () => {
                         <li className="like">
                             찜
                         </li>
-                        <li className="share">
+                        <li className="share"
+                            onClick={() => setShareValue(!shareValue)}
+                        >
                             공유
+                            {shareValue === true ? <ShareModalPopup /> : ""}
                         </li>
                     </ul>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Header from '../header';
@@ -8,7 +8,6 @@ import ContentsPlayList from './contents-play-list';
 import PopularPosterSlide from '../main/pc/popular-poster-slide';
 
 const ContentsStyle = styled.div`
-    
 `;
 
 const Contents = () => {
