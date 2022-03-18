@@ -1,13 +1,19 @@
 const { query } = require("express");
 const mysql = require("mysql");
-const rds_info = require('../account');
+const account = require('../account');
 const router = require("../slideshow/slideshow");
 
 const connection = mysql.createConnection({
-    host: rds_info.RDS_INFO.HOST,
-    user: rds_info.RDS_INFO.USER,
-    password: rds_info.RDS_INFO.PASSWORD,
-    database: rds_info.RDS_INFO.DATABASE
+    host: account.RDS_INFO.HOST,
+    user: account.RDS_INFO.USER,
+    password: account.RDS_INFO.PASSWORD,
+    database: account.RDS_INFO.DATABASE
+
+    // host: rds_info.GOORM_INFO.HOST,
+    // user: rds_info.GOORM_INFO.USER,
+    // password: rds_info.GOORM_INFO.PASSWORD,
+    // database: rds_info.GOORM_INFO.DATABASE,
+    // port: '58487',
 });
 
 connection.connect((err) => {

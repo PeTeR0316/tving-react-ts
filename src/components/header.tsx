@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 
 import Nav from './nav';
+import Search from './search';
 
 import ICONS from '../assets/icons';
 
@@ -71,6 +72,7 @@ const HeaderStyle = styled.header`
 
 const Header = () => {
     const [scroll, setScroll] = useState<number>(0);
+    const [search, setSearch] = useState<boolean>(false);
 
     window.addEventListener(
         "scroll", 
@@ -87,10 +89,12 @@ const Header = () => {
                 <Nav />
 
                 <div className="userMenu">
-                    <button className="search"></button>
+                    <button className="search" onClick={() => {setSearch(!search)}}></button>
                     <div className="userImg"></div>
                 </div>
             </div>
+
+            {search === true ? <Search /> : ""}
         </HeaderStyle>
     )
 }
